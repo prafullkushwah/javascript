@@ -9,7 +9,7 @@ btn.addEventListener("click", async () => {
 
 function show(collArr) {
   let ul = document.querySelector("#list");
-  ul.innerHTML = ""; // purani list clear
+  ul.innerHTML = "";
 
   for (let col of collArr) {
     let li = document.createElement("li");
@@ -21,7 +21,7 @@ function show(collArr) {
 async function getColleges(country) {
   try {
     let res = await axios.get(url + country);
-    return res.data; // ✅ MOST IMPORTANT
+    return res.data; // 
   } catch (err) {
     console.log("error", err);
     return [];

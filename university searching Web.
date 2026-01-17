@@ -1,0 +1,29 @@
+let url = "http://universities.hipolabs.com/search?name=";
+let btn = document.querySelector("button");
+
+btn.addEventListener("click", async () => {
+  let country = document.querySelector("input").value;
+  let collArr = await getColleges(country);
+  show(collArr);
+});
+
+function show(collArr) {
+  let ul = document.querySelector("#list");
+  ul.innerHTML = ""; // purani list clear
+
+  for (let col of collArr) {
+    let li = document.createElement("li");
+    li.innerText = col.name;
+    ul.appendChild(li);
+  }
+}
+
+async function getColleges(country) {
+  try {
+    let res = await axios.get(url + country);
+    return res.data; // ✅ MOST IMPORTANT
+  } catch (err) {
+    console.log("error", err);
+    return [];
+  }
+}
